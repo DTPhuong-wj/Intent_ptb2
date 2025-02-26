@@ -35,7 +35,12 @@ class ResultScreen : AppCompatActivity() {
         val b = intent.getIntExtra("b", 0)
         val c = intent.getIntExtra("c", 0)
         rs.text = msg
-        result.text = "Kết quả của phương trình: ${a}x^2 + ${b}x + ${c}"
+        val title = buildString {
+            append("${a}x²")
+            if (b > 0) append(" + ${b}x") else if (b < 0) append(" - ${-b}x")
+            if (c > 0) append(" + $c") else if (c < 0) append(" - ${-c}")
+        }
+        result.text = "Kết quả của phương trình: $title"
     }
 
     private fun event() {
